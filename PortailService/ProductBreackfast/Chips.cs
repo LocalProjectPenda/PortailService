@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PortailService.Product.ProductBreackfast
 {
-    internal class Chips : IBrunch
+    internal class Chips : Brunch
     {
         public override async Task<string> OrderMeal()
         {

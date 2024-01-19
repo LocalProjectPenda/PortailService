@@ -1,4 +1,6 @@
 ﻿
+using GiudiciaryService.AbstractProduct.AbstractFood;
+using PortailService.AbstractFood;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,8 @@ namespace PortailService.Abstract
     public  abstract class FactoryFood
     {
         
-        //public abstract Breackfast CreateBoxBreackfast(List<string> breackfast);
+        public abstract Breackfast CreateBoxBreackfast(int choice);
+        public abstract Brunch CreateBoxLunch(int choice);
         
     }
 }

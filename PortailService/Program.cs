@@ -1,8 +1,11 @@
 ﻿
+using PortailService.Abstract;
+using PortailService.Concrete;
 using PortailService.Model;
 using PortailService.Product.ProductBreackfast;
 using PortailService.ProductBreackfast;
 using PortailService.Service;
+using System.Collections.Generic;
 using System.Net;
 using System.Numerics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -24,6 +27,10 @@ namespace PortailService
             Nuggets nuggets = new Nuggets();
             Chips chips = new Chips();
             Beverage beverage = new Beverage();
+
+            FactoryFood factoryFoods = new MacDonald();
+            FactoryFood factoryFood = new Starbucks();
+
 
             //List<Task<string>> Results= new List<Task<string>>();
             //Task<string> jus = juice.OrderMeal(); 
@@ -88,10 +95,32 @@ namespace PortailService
                         Console.WriteLine("\t3 - CAKE");
                         Console.WriteLine("\t4 - JUICE");
                         int menus = Convert.ToInt32(Console.ReadLine());
-                        if (menus == 1) { Res.Add(cafe.OrderMeal()); }
-                        else if (menus == 2) { Res.Add(cappuccino.OrderMeal()); }
-                        else if (menus == 3) { Res.Add(cake.OrderMeal()); }
-                        else if (menus == 4) { Res.Add(juice.OrderMeal()); }
+                        if (menus == 1)
+                        {
+                            //Res.Add(cafe.OrderMeal()); 
+                            var orderBreackfast = factoryFoods.CreateBoxBreackfast(1);
+
+                           Res.Add( orderBreackfast.OrderMeal());
+                        }
+                        else if (menus == 2)
+                        {// Res.Add(cappuccino.OrderMeal());
+                            var orderBreackfast = factoryFoods.CreateBoxBreackfast(2);
+
+                            Res.Add(orderBreackfast.OrderMeal());
+                        }
+                        else if (menus == 3) 
+                        { //Res.Add(cake.OrderMeal());
+
+                            var orderBreackfast = factoryFoods.CreateBoxBreackfast(3);
+
+                            Res.Add(orderBreackfast.OrderMeal());
+                        }
+                        else if (menus == 4)
+                        { //Res.Add(juice.OrderMeal());
+                            var orderBreackfast = factoryFoods.CreateBoxBreackfast(4);
+
+                            Res.Add(orderBreackfast.OrderMeal());
+                        }
                         Console.WriteLine(" y- to continue ou n to finish");
 
                     } while (Console.ReadLine() != "n");
@@ -113,10 +142,26 @@ namespace PortailService
                         Console.WriteLine("\t3 - CHIPS");
                         Console.WriteLine("\t4 - BEVERAGE");
                         int menus = Convert.ToInt32(Console.ReadLine());
-                        if (menus == 1) { Res.Add(burger.OrderMeal()); }
-                        else if (menus == 2) { Res.Add(nuggets.OrderMeal()); }
-                        else if (menus == 3) { Res.Add(chips.OrderMeal()); }
-                        else if (menus == 4) { Res.Add(beverage.OrderMeal()); }
+                        if (menus == 1) 
+                        {
+                            var orderLunch = factoryFoods.CreateBoxBreackfast(1);
+                            Res.Add(orderLunch.OrderMeal());
+                        }
+                        else if (menus == 2)
+                        {
+                            var orderLunch = factoryFoods.CreateBoxBreackfast(2);
+                            Res.Add(orderLunch.OrderMeal());
+                        }
+                        else if (menus == 3)
+                        {
+                            var orderLunch = factoryFoods.CreateBoxBreackfast(3);
+                            Res.Add(orderLunch.OrderMeal());
+                        }
+                        else if (menus == 4)
+                        {
+                            var orderLunch = factoryFoods.CreateBoxBreackfast(4);
+                            Res.Add(orderLunch.OrderMeal());
+                        }
                         Console.WriteLine(" y- to continue ou n to finish");
 
                     } while (Console.ReadLine() != "n");
