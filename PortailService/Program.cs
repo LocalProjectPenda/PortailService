@@ -20,17 +20,43 @@ namespace PortailService
             AppFood food = new AppFood();
 
             //User penda = new User() { Name = "penda", mail = "example@yop.com", address = "Siena", phone = "26564782" };
-            Juice juice = new Juice();
-            Cake cake = new Cake();
-            Coffe cafe = new Coffe();
-            Cappuccino cappuccino = new Cappuccino();
-            Burger burger = new Burger();
-            Nuggets nuggets = new Nuggets();
-            Chips chips = new Chips();
-            Beverage beverage = new Beverage();
+            //Juice juice = new Juice();
+            //Cake cake = new Cake();
+            //Coffe cafe = new Coffe();
+            //Cappuccino cappuccino = new Cappuccino();
+            //Burger burger = new Burger();
+            //Nuggets nuggets = new Nuggets();
+            //Chips chips = new Chips();
+            //Beverage beverage = new Beverage();
 
-            FactoryFood factoryFoods = new MacDonald();
-            FactoryFood factoryFood = new Starbucks();
+
+            Console.WriteLine("Your Name:");
+            User user1 = new User("", "");
+            user1.Name = Console.ReadLine();
+            Console.WriteLine("Your Email:");
+            user1.mail = Console.ReadLine();
+            Console.WriteLine($"");
+            Console.WriteLine($"-------------------------------");
+
+
+            DeliveryChoice deliyChoice = new DeliveryChoice();
+
+            FactoryFood factoryFoods = deliyChoice.Choice();
+
+            //if(factoryFoods == new MacDonald() )
+            //{
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            string date = DateTime.Now.ToString("HH:mm");
+            Console.WriteLine($"{date} --> FOOD PROVIDER NAME:  {factoryFoods.GetType().Name}--------");
+
+            Console.ResetColor();
+            Console.WriteLine($"-------------------------------");
+            await Task.Delay(3000);
+    
+           // }
+
+            //FactoryFood factoryFoods = new MacDonald();
+            //FactoryFood factoryFood = new Starbucks();
 
 
             //List<Task<string>> Results= new List<Task<string>>();
@@ -63,12 +89,7 @@ namespace PortailService
 
 
 
-            Console.WriteLine("Your Name:");
-            User user1 = new User("", "");
-            user1.Name = Console.ReadLine();
-            Console.WriteLine("Your Email:");
-            user1.mail = Console.ReadLine();
-
+           
 
 
             Console.WriteLine("Choose an option from the following list:");

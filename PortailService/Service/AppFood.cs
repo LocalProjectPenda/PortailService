@@ -1,4 +1,5 @@
-﻿using PortailService.Model;
+﻿using PortailService.Abstract;
+using PortailService.Model;
 using PortailService.Product.ProductBreackfast;
 using System;
 using System.Collections.Generic;
@@ -18,18 +19,18 @@ namespace PortailService.Service
 
 
 
-            Random random = new Random();
-            var provider = new List<string> { "MacDonalds", "Starbucks" };
-            int index = random.Next(provider.Count);
-            var prov = provider[index];
-            provider.RemoveAt(index);
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            string date = DateTime.Now.ToString("HH:mm");
-            Console.WriteLine($"{date} --> ORDER SEND TO {prov}--------");
+            //Random random = new Random();
+            //var provider = new List<string> { "MacDonalds", "Starbucks" };
+            //int index = random.Next(provider.Count);
+            //var prov = provider[index];
+            //provider.RemoveAt(index);
+            //Console.ForegroundColor = ConsoleColor.Magenta;
+            //string date = DateTime.Now.ToString("HH:mm");
+            //Console.WriteLine($"{date} --> ORDER SEND TO {prov}--------");
 
-            Console.ResetColor();
-            Console.WriteLine($"-------------------------------");
-            await Task.Delay(3000);
+            //Console.ResetColor();
+            //Console.WriteLine($"-------------------------------");
+            //await Task.Delay(3000);
 
 
             order.FluidCheckups(Results, user);/// Runs Taks in  parallel [ Async noAwait]
