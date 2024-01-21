@@ -1,4 +1,5 @@
 ﻿
+using PortailService.Mail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace PortailService.AbstractFood
     public  abstract class Breackfast
     {
         public abstract Task<string> OrderMeal();
-       
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using PortailService.Abstract;
 using PortailService.Concrete;
+using PortailService.Mail;
 using PortailService.Model;
 using PortailService.Product.ProductBreackfast;
 using PortailService.ProductBreackfast;
@@ -62,9 +63,13 @@ namespace PortailService
 
 
 
-            Console.WriteLine("Your name:");
-            User user1 = new User();
+            Console.WriteLine("Your Name:");
+            User user1 = new User("", "");
             user1.Name = Console.ReadLine();
+            Console.WriteLine("Your Email:");
+            user1.mail = Console.ReadLine();
+
+
 
             Console.WriteLine("Choose an option from the following list:");
             Console.WriteLine("\t1 - FODD");
@@ -186,9 +191,16 @@ namespace PortailService
                 int choice2 = Convert.ToInt32(Console.ReadLine());
             }
               
+            EmailService email = new EmailService();
                    
-               
+               MailData notification = new MailData();
+            notification.ToEmail = user1.mail;
+            notification.Subject = "state food Deliver";
+            notification.Body = "your order has been delivered. Thank you for choossing our food services";
                   
+              await  email.SendEmailAsync(notification);
+
+            Console.ReadLine();
             }
     }
 }
