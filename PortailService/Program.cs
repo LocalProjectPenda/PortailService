@@ -6,6 +6,7 @@ using PortailService.Model;
 using PortailService.Product.ProductBreackfast;
 using PortailService.ProductBreackfast;
 using PortailService.Service;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Numerics;
@@ -18,6 +19,8 @@ namespace PortailService
         static async Task Main(string[] args)
         {
             AppFood food = new AppFood();
+
+            FactoryTranslate factoryTranslate = new TranslationStore();
 
             //User penda = new User() { Name = "penda", mail = "example@yop.com", address = "Siena", phone = "26564782" };
             //Juice juice = new Juice();
@@ -45,13 +48,7 @@ namespace PortailService
 
             //if(factoryFoods == new MacDonald() )
             //{
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            string date = DateTime.Now.ToString("HH:mm");
-            Console.WriteLine($"{date} --> FOOD PROVIDER NAME:  {factoryFoods.GetType().Name}--------");
-
-            Console.ResetColor();
-            Console.WriteLine($"-------------------------------");
-            await Task.Delay(3000);
+           
     
            // }
 
@@ -101,6 +98,13 @@ namespace PortailService
 
             if (choice == 1)
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                string date = DateTime.Now.ToString("HH:mm");
+                Console.WriteLine($"{date} --> FOOD PROVIDER NAME:  {factoryFoods.GetType().Name}--------");
+
+                Console.ResetColor();
+                Console.WriteLine($"-------------------------------");
+                await Task.Delay(3000);
 
                 Console.WriteLine("Select Menu ");
 
@@ -199,17 +203,55 @@ namespace PortailService
             }
             else if (choice == 2) {
 
-                Console.WriteLine($" Select LANGUAGE");
+                Console.WriteLine($" Select FORMAT");
 
-                Console.WriteLine("\tM - MUSIC");
-                Console.WriteLine("\tC - PROFILE");
-                Console.WriteLine("\tA - ARTIST");
-                Console.WriteLine("\tD - ALBUM");
-                Console.WriteLine("\tP - PLAYLIST");
-                Console.WriteLine("\tR - RADIO");
-                Console.WriteLine("\tZ - SEARCH");
-                Console.WriteLine("\tL - PLAYER");
+                Console.WriteLine("\t1 - PDF");
+                Console.WriteLine("\t2 - WORD");
+                Console.WriteLine("\t3 - HTML");
+          
                 int choice2 = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Select language");
+
+                string langue = Console.ReadLine();
+                
+
+
+                if (choice2 == 1)
+                {
+                    var orderTranslate= factoryTranslate.CreateGenerator("pdf");
+                    Console.WriteLine($"ORDER:: PENDING for {user1.Name.ToUpper()} PENDING......");
+                    await orderTranslate.GenerateTranslate(langue);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($" the pdf in {langue} for {user1.Name.ToUpper()} is ready");
+                   
+                    Console.ResetColor();
+                    Console.WriteLine($"-------------------------------");
+
+                }
+                else if (choice2 == 2)
+                {
+                    var orderTranslate = factoryTranslate.CreateGenerator("word");
+                    Console.WriteLine($"ORDER:: PENDING for {user1.Name.ToUpper()} PENDING......");
+                    await orderTranslate.GenerateTranslate(langue);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($" the word in {langue} for {user1.Name.ToUpper()} is ready");
+
+                    Console.ResetColor();
+                    Console.WriteLine($"-------------------------------");
+
+                }
+                else if (choice2 == 3)
+                {
+                    var orderTranslate = factoryTranslate.CreateGenerator("html");
+                    Console.WriteLine($"ORDER:: PENDING for {user1.Name.ToUpper()} PENDING......");
+                    await orderTranslate.GenerateTranslate(langue);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($" the html in {langue} for {user1.Name.ToUpper()} is ready");
+
+                    Console.ResetColor();
+                    Console.WriteLine($"-------------------------------");
+                }
             }
               
             EmailService email = new EmailService();
@@ -217,9 +259,12 @@ namespace PortailService
                MailData notification = new MailData();
             notification.ToEmail = user1.mail;
             notification.Subject = "state food Deliver";
-            notification.Body = "your order has been delivered. Thank you for choossing our food services";
+            notification.Body = "your order has been delivered. Thank you for choossing our services";
                   
               await  email.SendEmailAsync(notification);
+
+            Console.WriteLine($"Check the delivery notification on your email");
+
 
             Console.ReadLine();
             }

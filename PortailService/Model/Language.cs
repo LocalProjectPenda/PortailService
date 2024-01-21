@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PortailService.AbstractTranslate
+namespace PortailService.Model
 {
-    internal class WORD
+    public enum Language
     {
+        English,
+        German, 
+        French,
+        Italian
     }
 }

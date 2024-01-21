@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortailService.AbstractTranslate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace PortailService.Abstract
 {
     public abstract class FactoryTranslate
     {
+      public abstract TranslateDoc CreateGenerator(string type);
+
+
     }
 }
